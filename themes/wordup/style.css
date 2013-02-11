@@ -106,6 +106,8 @@ textarea {
 	font-family: "proxima-nova", sans-serif;
 }
 
+#page a{color: #1e8cbe; text-decoration: none;}
+
 /* Headings */
 h1,h2,h3,h4,h5,h6 {
 	clear: both;
@@ -358,11 +360,11 @@ a:active {
 	padding-left: 0;
 }
 .main-navigation li {
-	float: left;
+	display: inline;
 	position: relative;
 }
 .main-navigation a {
-	display: block;
+	
 	text-decoration: none;
 }
 .main-navigation ul ul {

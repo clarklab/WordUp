@@ -50,22 +50,24 @@ class wordup_session_rsvp {
 
 	function details()
 	{
-		if( !is_user_logged_in() )
-			return false;
+		
 		
 		global $current_user;
 
 		$people = get_post_meta(get_the_ID(), 'user', false); 
 		if (in_array($current_user->ID, $people)) { $action = 'leave'; } else { $action = 'join'; };
 
+		if( is_user_logged_in() ) {
 		$output = '<form action="" method="post">
 		<input type="hidden" name="session_id" id="session_id" value="' . get_the_ID() .'">
 		<input type="hidden" name="rsvp_user_id" id="rsvp_user_id" value="' . $current_user->ID . '">
 		<input type="button" name="rsvp" id="rsvp" value="'.$action.' this session" />
-		</form>
-		<ul class="people">';
+		</form>'; }
 
 		if ($people){
+
+		$output .='<ul class="people">';
+
 		foreach ($people as $person) {
 		$person_data = get_userdata( $person );
 		$output .='<li><a href="/person/'.$person_data->user_login.'">'.get_avatar( $person, $size = '96' ).'</a></li>';
