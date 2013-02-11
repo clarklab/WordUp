@@ -573,4 +573,9 @@ object {
 	display: block;
 }
 
-#primary{ margin:0 300px 0 0; border-right:1px solid #cecece;}
+#page{ margin:0 300px 0 0; border-right:1px solid #cecece;}
+
+#masthead{position: fixed; top:0; right:0; width:300px; text-align: center;}
+#masthead h1{font-weight: 800; font-size: 24px; margin:50px 0 0 0;}
+
+.entry-title{font-weight: 800; font-size: 34px;}
