@@ -23,6 +23,11 @@ function my_connection_types() {
 		'from' => 'session',
 		'to' => 'wordup'
 	) );
+      p2p_register_connection_type( array(
+            'name' => 'rsvps',
+            'from' => 'session',
+            'to' => 'user'
+        ) );
 }
 add_action( 'p2p_init', 'my_connection_types' );
 

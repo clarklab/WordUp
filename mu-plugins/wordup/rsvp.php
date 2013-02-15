@@ -64,14 +64,12 @@ class wordup_session_rsvp {
 		<input type="button" name="rsvp" id="rsvp" value="'.$action.' this session" />
 		</form>'; }
 
-		if ($people){
-
 		$output .='<ul class="people">';
 
 		foreach ($people as $person) {
 		$person_data = get_userdata( $person );
 		$output .='<li><a href="/person/'.$person_data->user_login.'">'.get_avatar( $person, $size = '96' ).'</a></li>';
-		} }
+		} 
 		$output .='</ul>';
 
 		return $output;
@@ -92,9 +90,11 @@ class wordup_session_rsvp {
 		$people = get_post_meta($post_id, 'user', false); 
 		if (in_array($user_id, $people)) {
 			delete_post_meta( $post_id, 'user', $user_id );
+			p2p_type( 'rsvps' )->disconnect( $post_id, $user_id );
 			$status = 'left';
 		} else {
 			$meta_id = add_post_meta( $post_id, 'user', $user_id );
+			p2p_type( 'rsvps' )->connect( $post_id, $user_id, array('date' => current_time('mysql')) );
 			$status = 'joined';
 		};
 
