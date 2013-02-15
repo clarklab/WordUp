@@ -106,8 +106,6 @@ textarea {
 	font-family: "proxima-nova", sans-serif;
 }
 
-#page a{color: #1e8cbe; text-decoration: none;}
-
 /* Headings */
 h1,h2,h3,h4,h5,h6 {
 	clear: both;
@@ -309,15 +307,7 @@ textarea {
 
 /* Links */
 a {
-	color: royalblue;
-}
-a:visited {
-	color: purple;
-}
-a:hover,
-a:focus,
-a:active {
-	color: midnightblue;
+	color: #1e8cbe; text-decoration: none;
 }
 
 /* Alignment */
@@ -575,9 +565,13 @@ object {
 	display: block;
 }
 
-#page{ margin:0 300px 0 0; border-right:1px solid #cecece;}
+#page{ margin:0 300px 0 0; }
 
-#masthead{position: fixed; top:0; right:0; width:300px; text-align: center;}
+#main{max-width: 840px; margin:0 auto;}
+
+#masthead{position: fixed; top:0; bottom:0; right:0; width:300px; text-align: center; border-left:1px solid #cecece;}
 #masthead h1{font-weight: 800; font-size: 24px; margin:50px 0 0 0;}
 
 .entry-title{font-weight: 800; font-size: 34px;}
+
+.site-navigation a{background: #1e8cbe; color:#fff; display: inline-block; padding: 5px 10px;}

@@ -14,9 +14,7 @@
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="site-info">
 			<?php do_action( 'wordup_credits' ); ?>
-			<a href="http://wordpress.org/" title="<?php esc_attr_e( 'A Semantic Personal Publishing Platform', 'wordup' ); ?>" rel="generator"><?php printf( __( 'Proudly powered by %s', 'wordup' ), 'WordPress' ); ?></a>
-			<span class="sep"> | </span>
-			<?php printf( __( 'Theme: %1$s by %2$s.', 'wordup' ), 'WordUp', '<a href="http://clarklab.com" rel="designer">Clark Wimberly</a>' ); ?>
+			
 		</div><!-- .site-info -->
 	</footer><!-- #colophon .site-footer -->
 </div><!-- #page .hfeed .site -->

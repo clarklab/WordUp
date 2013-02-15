@@ -17,4 +17,13 @@ function new_author_base() {
 
 add_action('init', 'new_author_base');
 
+function my_connection_types() {
+	p2p_register_connection_type( array(
+		'name' => 'sessions_to_wordups',
+		'from' => 'session',
+		'to' => 'wordup'
+	) );
+}
+add_action( 'p2p_init', 'my_connection_types' );
+
 ?>

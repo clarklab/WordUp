@@ -17,30 +17,28 @@ get_header(); ?>
 		<div id="primary" class="content-area">
 			<div id="content" class="site-content" role="main">
 
-			<?php if ( have_posts() ) : ?>
+			<?php
 
-				<?php wordup_content_nav( 'nav-above' ); ?>
+			$wordups = new WP_Query('posts_per_page=1&post_type=wordup&meta_key=date&orderby=meta_value_num&order=ASC');
+			p2p_type( 'sessions_to_wordups' )->each_connected( $wordups );
 
-				<?php /* Start the Loop */ ?>
-				<?php while ( have_posts() ) : the_post(); ?>
+			while ($wordups->have_posts()) : $wordups->the_post(); ?>
 
-					<?php
-						/* Include the Post-Format-specific template for the content.
-						 * If you want to overload this in a child theme then include a file
-						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-						 */
-						get_template_part( 'content', get_post_format() );
-					?>
+			<h1 class="wordup-title"><?php the_title(); ?></h1>
+			<h2 class="wordup-date"><?php $date = DateTime::createFromFormat('Ymd', get_post_meta($post->ID, 'date', true)); echo $date->format('d-m-Y'); ?></h2>
 
-				<?php endwhile; ?>
+			<?php if ($post->connected) { ?>
+			<ul>
+			<?php foreach ( $post->connected as $post ) : setup_postdata( $post ); ?>
 
-				<?php wordup_content_nav( 'nav-below' ); ?>
+			<li><a href="<?php the_permalink() ?>"><?php the_title() ?></a></li>
+		
+			<?php endforeach; wp_reset_postdata(); ?>
+			</ul>
+			<?php } ?>
 
-			<?php else : ?>
-
-				<?php get_template_part( 'no-results', 'index' ); ?>
-
-			<?php endif; ?>
+			     <?php 
+			  endwhile; ?>
 
 			</div><!-- #content .site-content -->
 		</div><!-- #primary .content-area -->
