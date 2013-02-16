@@ -21,10 +21,12 @@ get_header(); ?>
 					</h1>
 				</header><!-- .page-header -->
 
+				<p><?php echo $user->user_description; ?></p>
+
 				<?php $leading = new WP_Query('post_type=session&author='.$user->ID);
 					if ($leading->have_posts()) : ?>
-						<ul class="leading">
-							 <li>Leading Sessions</li>
+						<ul class="leading half">
+							 <li>Leading</li>
 							 <?php while ($leading->have_posts()) : $leading->the_post();
 							 echo '<li><a href="'.get_permalink().'">'.get_the_title().'</a></li>';
 							 $exclude[]=$post->ID;
@@ -40,7 +42,7 @@ get_header(); ?>
 				  'nopaging' => true
 				) );
 				if ($sessions) {?>
-				<ul class="joining">
+				<ul class="joining half">
 				<li>Also Joining</li>
 				<?php foreach ($sessions as $post) {
 					setup_postdata( $post );

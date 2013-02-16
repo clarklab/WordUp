@@ -564,7 +564,7 @@ object {
 #masthead h1{font-weight: 800; font-size: 24px; }
 #masthead h2{margin: 0 0 10px 0; }
 
-.entry-title{font-weight: 800; font-size: 34px;}
+.entry-title{font-weight: 800; font-size: 34px; line-height: 34px}
 
 .site-navigation a{background: #1e8cbe; color:#fff; display: inline-block; padding: 0 10px; height: 40px; line-height: 40px;}
 
@@ -576,9 +576,9 @@ p.rsvps{margin-bottom: 10px;}
 
 form.rsvp{float:right;}
 
-.author{padding: 10px 10px 10px 114px; min-height:96px; background: #eee; position: relative;}
-.author img{position: absolute; top:0; left: 0;}
-.author p{margin: 0;}
+article .author{padding: 10px 10px 10px 114px; min-height:96px; background: #eee; position: relative;}
+article .author img{position: absolute; top:0; left: 0;}
+article .author p{margin: 0;}
 
 .presented{list-style:none; margin: 30px 0 0 0; padding: 0;}
 .presented li{display: inline;}
@@ -590,11 +590,20 @@ form.rsvp{float:right;}
 
 #respond{margin:30px 0 0 0;}
 
+.leading, .joining {list-style:none; margin: 0; padding: 0; border: 1px solid #cecece; padding: 20px}
+.leading li:first-child, .joining li:first-child{font-weight: 800; font-size: 16px; }
+
+.half{width: 48%; float: left; margin: 0 4% 0 0;}
+.half:last-child{margin: 0;}
+
+.wordup-desc {font-family: "adelle"; font-size: 30px; font-weight: 800; color: #999;}
+
 @media all and (max-width: 680px) {
-body{}
-#page{margin:0;}
+body{padding: 50px 0 0 0;}
+#page{margin:0; padding: 10px;}
 #masthead{top:0; bottom: auto; left:0; width:100%; border:0; border-bottom:1px solid #cecece; height: 40px; text-align: left; background: #fff; z-index: 100; padding:0;}
 #masthead h1{float:left; height: 40px; line-height: 40px; margin: 0 10px;}
 #masthead h2{float:left; clear: none; height: 40px; line-height: 40px;}
 .main-navigation{float: right; width:auto; clear: none}
+.half{width: 100%; float: none;}
 }
