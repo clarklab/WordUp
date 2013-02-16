@@ -66,10 +66,10 @@ class wordup_session_rsvp {
 
 		$output .='<ul class="people">';
 
-		foreach ($people as $person) {
-		$person_data = get_userdata( $person );
-		$output .='<li><a href="/person/'.$person_data->user_login.'">'.get_avatar( $person, $size = '96' ).'</a></li>';
-		} 
+		$rsvps= get_users( array( 'connected_type' => 'rsvps', 'connected_items' => get_the_ID()) ); 
+
+		foreach ($rsvps as $user) {
+		$output .='<li><a href="/person/'.$user->user_login.'">'.get_avatar( $user->user_email, '96' ).'</a></li>';}
 		$output .='</ul>';
 
 		return $output;
@@ -87,22 +87,20 @@ class wordup_session_rsvp {
 		if( !wp_verify_nonce( $_POST['_wpnonce'], 'nonce-rsvp' ) )
 			die( 'Go away, asshole!' );
 
-		$people = get_post_meta($post_id, 'user', false); 
-		if (in_array($user_id, $people)) {
-			delete_post_meta( $post_id, 'user', $user_id );
+		$p2p_id = p2p_type( 'rsvps' )->get_p2p_id( $post_id, $user_id );
+
+		if ( $p2p_id ) {
 			p2p_type( 'rsvps' )->disconnect( $post_id, $user_id );
-			$status = 'left';
+			$status = 'left'; 
 		} else {
-			$meta_id = add_post_meta( $post_id, 'user', $user_id );
 			p2p_type( 'rsvps' )->connect( $post_id, $user_id, array('date' => current_time('mysql')) );
 			$status = 'joined';
-		};
+		}
 
-		$people = get_post_meta($post_id, 'user', false); 
-		if ($people){
-		foreach ($people as $person) {
-		$person_data = get_userdata( $person );
-		$facepile = $facepile.'<li><a href="/person/'.$person_data->user_login.'">'.get_avatar( $person_data->ID, $size = '96' ).'</a></li>';
+		$rsvps= get_users( array( 'connected_type' => 'rsvps', 'connected_items' => get_the_ID()) ); 
+		if ($rsvps){
+		foreach ($rsvps as $user) {
+		$facepile.='<li><a href="/person/'.$user->user_login.'">'.get_avatar( $user->user_email, '96' ).'</a></li>';
 		} } 
 
 		$return = array('status' => $status, 'people' => $facepile);

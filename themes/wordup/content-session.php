@@ -14,6 +14,9 @@
 			<?php wordup_posted_on(); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
+
+		<p class="rsvps"><?php echo get_rsvp_total(); ?> Attending</p>
+
 	</header><!-- .entry-header -->
 
 	
@@ -21,6 +24,8 @@
 		<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'wordup' ) ); ?>
 		<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wordup' ), 'after' => '</div>' ) ); ?>
 	</div><!-- .entry-content -->
+
+	<?php global $rsvp; echo $rsvp->details() ?>
 	
 	<?php
 

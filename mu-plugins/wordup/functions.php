@@ -31,4 +31,9 @@ function my_connection_types() {
 }
 add_action( 'p2p_init', 'my_connection_types' );
 
+function get_rsvp_total() {
+  global $post;
+  $rsvps= get_users( array( 'connected_type' => 'rsvps', 'connected_items' => $post->ID) );
+  return count($rsvps);
+}
 ?>
