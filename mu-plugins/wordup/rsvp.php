@@ -53,7 +53,7 @@ class wordup_session_rsvp {
 	{
 		global $current_user;
 
-		$p2p_id = p2p_type( 'rsvps' )->get_p2p_id( get_the_ID(), $current_user->ID );
+		$p2p_id = p2p_type( 'session_rsvps' )->get_p2p_id( get_the_ID(), $current_user->ID );
 		if ( $p2p_id ) {$status = 'leave'; } else { $status = 'join'; };
 
 		if( is_user_logged_in() ) {
@@ -85,13 +85,13 @@ class wordup_session_rsvp {
 		if( !wp_verify_nonce( $_POST['_wpnonce'], 'nonce-rsvp' ) )
 			die( 'Go away, asshole!' );
 
-		$p2p_id = p2p_type( 'rsvps' )->get_p2p_id( $post_id, $user_id );
+		$p2p_id = p2p_type( 'session_rsvps' )->get_p2p_id( $post_id, $user_id );
 
 		if ( $p2p_id ) {
-			p2p_type( 'rsvps' )->disconnect( $post_id, $user_id );
+			p2p_type( 'session_rsvps' )->disconnect( $post_id, $user_id );
 			$status = 'left'; 
 		} else {
-			p2p_type( 'rsvps' )->connect( $post_id, $user_id, array('date' => current_time('mysql')) );
+			p2p_type( 'session_rsvps' )->connect( $post_id, $user_id, array('date' => current_time('mysql')) );
 			$status = 'joined';
 		}
 

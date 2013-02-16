@@ -24,21 +24,31 @@ function my_connection_types() {
 		'to' => 'wordup'
 	) );
       p2p_register_connection_type( array(
-            'name' => 'rsvps',
+            'name' => 'session_rsvps',
             'from' => 'session',
+            'to' => 'user'
+        ) );
+      p2p_register_connection_type( array(
+            'name' => 'wordup_rsvps',
+            'from' => 'wordup',
             'to' => 'user'
         ) );
 }
 add_action( 'p2p_init', 'my_connection_types' );
 
 function get_rsvp_total($postid) {
-  $rsvps= get_users( array( 'connected_type' => 'rsvps', 'connected_items' => $postid) );
+  $type = get_post_type( $postid );
+  if ($type == 'session') {
+  $rsvps = get_users( array( 'connected_type' => 'session_rsvps', 'connected_items' => $postid) );
+  } elseif ($type == 'wordup'){
+  $rsvps = get_users( array( 'connected_type' => 'wordup_rsvps', 'connected_items' => $postid) );
+  }
   return count($rsvps);
 }
 
 function get_rsvp_facepile($postid) {
   global $post;
-  $rsvps= get_users( array( 'connected_type' => 'rsvps', 'connected_items' => $postid) );
+  $rsvps= get_users( array( 'connected_type' => 'session_rsvps', 'connected_items' => $postid) );
   foreach ($rsvps as $user) {
     $output .='<li><a href="/person/'.$user->user_login.'">'.get_avatar( $user->user_email, '96' ).'</a></li>';}
   return $output;

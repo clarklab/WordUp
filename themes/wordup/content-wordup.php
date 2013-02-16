@@ -10,7 +10,9 @@
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 
 		<h2 class="wordup-date"><?php $date = DateTime::createFromFormat('Ymd', get_post_meta($post->ID, 'date', true)); echo $date->format('M d, Y'); ?></h2>
-		<h2 class="wordup-seats"><?php echo get_post_meta($post->ID, 'space', true); ?> Seats Available</h2>
+		<h2 class="wordup-seats">
+			<?php $seats = get_post_meta($post->ID, 'space', true); $taken = get_rsvp_total($post->ID); echo ($seats-$taken).' / '; echo $seats; ?> Seats Available
+		</h2>
 
 		<?php if ( 'post' == get_post_type() ) : ?>
 		<div class="entry-meta">
