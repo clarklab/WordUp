@@ -6,7 +6,7 @@ A theme for a kickass WordPress unconference
 Use
 ======
 
-Copy repo into /wp-content and go crazy.
+Copy repo into /wp-content and go crazy (like Prince).
 
 Required Plugins
 ======
