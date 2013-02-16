@@ -21,9 +21,10 @@ class wordup_session_rsvp {
 		<script>
 		jQuery(document).ready(function(){
 			
-			jQuery('#rsvp').click(function(){
-				var session_id = jQuery('#session_id').val();
-				var rsvp_user_id = jQuery('#rsvp_user_id').val();
+			jQuery('input.rsvp').click(function(){
+				var this_button = jQuery(this);
+				var session_id = jQuery(this).closest('form').children('.session_id').val();
+				var rsvp_user_id = jQuery(this).closest('form').children('.rsvp_user_id').val();
 			
 				jQuery.post(
 					'<?php echo get_option('siteurl') . '/wp-admin/admin-ajax.php' ?>',
@@ -35,8 +36,8 @@ class wordup_session_rsvp {
 					},
 					function(response) {	
 						var data = jQuery.parseJSON(response);
-						jQuery("#rsvp").val(data.status + ' the session');
-						jQuery('div.facepile').html(data.facepile);
+						jQuery(this_button).val(data.status + ' the session');
+						jQuery(this_button).closest('header').children('.facepile').html(data.facepile);
 					
 					}
 				);
@@ -55,11 +56,11 @@ class wordup_session_rsvp {
 		$p2p_id = p2p_type( 'rsvps' )->get_p2p_id( get_the_ID(), $current_user->ID );
 		if ( $p2p_id ) {$status = 'leave'; } else { $status = 'join'; };
 
-		if( is_user_logged_in() AND !is_home() AND !is_singular( 'wordup' )) {
+		if( is_user_logged_in() ) {
 		$output = '<form action="" method="post" class="rsvp">
-		<input type="hidden" name="session_id" id="session_id" value="' . get_the_ID() .'">
-		<input type="hidden" name="rsvp_user_id" id="rsvp_user_id" value="' . $current_user->ID . '">
-		<input type="button" name="rsvp" id="rsvp" value="'.$status.' this session" />
+		<input type="hidden" name="session_id" class="session_id" id="session_id" value="' . get_the_ID() .'">
+		<input type="hidden" name="rsvp_user_id" class="rsvp_user_id" id="rsvp_user_id" value="' . $current_user->ID . '">
+		<input type="button" name="rsvp" id="rsvp" class="rsvp" value="'.$status.' this session" />
 		</form>'; }
 
 		$output .='<div class="facepile">';

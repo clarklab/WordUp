@@ -23,6 +23,7 @@
 	<div class="entry-content">
 		<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'wordup' ) ); ?>
 		<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wordup' ), 'after' => '</div>' ) ); ?>
+		<?php get_template_part( 'credit') ?>
 	</div><!-- .entry-content -->
 	
 	<?php if (!is_singular( 'wordup' )) {
@@ -36,8 +37,9 @@
 	// Display connected pages
 	if ( $connected->have_posts() ) :
 	?>
-	<h3>Presented at:</h3>
-	<ul>
+
+	<ul class="presented">
+	<li>Presented at:</li>
 	<?php while ( $connected->have_posts() ) : $connected->the_post(); ?>
 		<li><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></li>
 	<?php endwhile; ?>

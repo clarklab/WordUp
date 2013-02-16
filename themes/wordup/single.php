@@ -15,8 +15,6 @@ get_header(); ?>
 
 				<?php get_template_part( 'content', get_post_type()); ?>
 
-				
-
 				<?php if ( comments_open() || '0' != get_comments_number() )
 					comments_template( '', true );
 				?>

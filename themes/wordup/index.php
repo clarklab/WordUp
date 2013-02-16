@@ -27,6 +27,7 @@ get_header(); ?>
 			<header class="entry-header">
 			<h1 class="entry-title"><?php the_title(); ?></h1>
 			<h2 class="wordup-date"><?php $date = DateTime::createFromFormat('Ymd', get_post_meta($post->ID, 'date', true)); echo $date->format('M d, Y'); ?></h2>
+			<h2 class="wordup-seats"><?php echo get_post_meta($post->ID, 'space', true); ?> Seats Available</h2>
 			</header>
 
 			<div class="entry-content">
