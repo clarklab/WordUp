@@ -219,7 +219,6 @@ input {
 	*overflow: visible;  /* Corrects inner spacing displayed oddly in IE6/7 */
 }
 button,
-html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
 	border: 1px solid #ccc;
@@ -238,8 +237,8 @@ input[type="submit"] {
 	padding: 1.12em 1.5em 1em;
 	text-shadow: 0 1px 0 rgba(255,255,255,.8);
 }
+input[type="button"]{cursor: pointer; }
 button:hover,
-html input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
 	border-color: #ccc #bbb #aaa #bbb;
@@ -248,11 +247,9 @@ input[type="submit"]:hover {
 	box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), inset 0 15px 17px rgba(255,255,255,0.8), inset 0 -5px 12px rgba(0,0,0,0.02);
 }
 button:focus,
-html input[type="button"]:focus,
 input[type="reset"]:focus,
 input[type="submit"]:focus,
 button:active,
-html input[type="button"]:active,
 input[type="reset"]:active,
 input[type="submit"]:active {
 	border-color: #aaa #bbb #bbb #bbb;
@@ -570,8 +567,17 @@ object {
 #main{max-width: 840px; margin:0 auto;}
 
 #masthead{position: fixed; top:0; bottom:0; right:0; width:300px; text-align: center; border-left:1px solid #cecece;}
-#masthead h1{font-weight: 800; font-size: 24px; margin:50px 0 0 0;}
+#masthead h1{font-weight: 800; font-size: 24px; }
 
 .entry-title{font-weight: 800; font-size: 34px;}
 
 .site-navigation a{background: #1e8cbe; color:#fff; display: inline-block; padding: 5px 10px;}
+
+.facepile ul{list-style: none; margin:0; padding: 0;}
+.facepile ul li{display: inline-block; margin:0 5px 0 0;}
+.facepile ul li img{width:48px; height: 48px;}
+
+p.rsvps{margin-bottom: 10px;}
+
+form.rsvp{float:right;}
+form.rsvp #rsvp{background: #1e8cbe; color: #fff; display: inline-block; padding: 5px 10px; border:0; text-transform: capitalize;}

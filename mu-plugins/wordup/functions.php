@@ -31,9 +31,16 @@ function my_connection_types() {
 }
 add_action( 'p2p_init', 'my_connection_types' );
 
-function get_rsvp_total() {
-  global $post;
-  $rsvps= get_users( array( 'connected_type' => 'rsvps', 'connected_items' => $post->ID) );
+function get_rsvp_total($postid) {
+  $rsvps= get_users( array( 'connected_type' => 'rsvps', 'connected_items' => $postid) );
   return count($rsvps);
+}
+
+function get_rsvp_facepile($postid) {
+  global $post;
+  $rsvps= get_users( array( 'connected_type' => 'rsvps', 'connected_items' => $postid) );
+  foreach ($rsvps as $user) {
+    $output .='<li><a href="/person/'.$user->user_login.'">'.get_avatar( $user->user_email, '96' ).'</a></li>';}
+  return $output;
 }
 ?>

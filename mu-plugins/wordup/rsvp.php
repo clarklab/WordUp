@@ -36,7 +36,7 @@ class wordup_session_rsvp {
 					function(response) {	
 						var data = jQuery.parseJSON(response);
 						jQuery("#rsvp").val(data.status + ' the session');
-						jQuery('ul.people').html(data.people);
+						jQuery('div.facepile').html(data.facepile);
 					
 					}
 				);
@@ -50,27 +50,24 @@ class wordup_session_rsvp {
 
 	function details()
 	{
-		
-		
 		global $current_user;
 
-		$people = get_post_meta(get_the_ID(), 'user', false); 
-		if (in_array($current_user->ID, $people)) { $action = 'leave'; } else { $action = 'join'; };
+		$p2p_id = p2p_type( 'rsvps' )->get_p2p_id( get_the_ID(), $current_user->ID );
+		if ( $p2p_id ) {$status = 'leave'; } else { $status = 'join'; };
 
-		if( is_user_logged_in() ) {
-		$output = '<form action="" method="post">
+		if( is_user_logged_in() AND !is_home() AND !is_singular( 'wordup' )) {
+		$output = '<form action="" method="post" class="rsvp">
 		<input type="hidden" name="session_id" id="session_id" value="' . get_the_ID() .'">
 		<input type="hidden" name="rsvp_user_id" id="rsvp_user_id" value="' . $current_user->ID . '">
-		<input type="button" name="rsvp" id="rsvp" value="'.$action.' this session" />
+		<input type="button" name="rsvp" id="rsvp" value="'.$status.' this session" />
 		</form>'; }
 
-		$output .='<ul class="people">';
-
-		$rsvps= get_users( array( 'connected_type' => 'rsvps', 'connected_items' => get_the_ID()) ); 
-
-		foreach ($rsvps as $user) {
-		$output .='<li><a href="/person/'.$user->user_login.'">'.get_avatar( $user->user_email, '96' ).'</a></li>';}
+		$output .='<div class="facepile">';
+		$output .='<p class="rsvps"><span class="count">'.get_rsvp_total(get_the_ID()).'</span> Attending</p>';
+		$output .='<ul>';
+		$output .= get_rsvp_facepile(get_the_ID());
 		$output .='</ul>';
+		$output .='</div>';
 
 		return $output;
 	}
@@ -97,13 +94,12 @@ class wordup_session_rsvp {
 			$status = 'joined';
 		}
 
-		$rsvps= get_users( array( 'connected_type' => 'rsvps', 'connected_items' => get_the_ID()) ); 
-		if ($rsvps){
-		foreach ($rsvps as $user) {
-		$facepile.='<li><a href="/person/'.$user->user_login.'">'.get_avatar( $user->user_email, '96' ).'</a></li>';
-		} } 
+		$output .='<p class="rsvps"><span class="count">'.get_rsvp_total($post_id).'</span> Attending</p>';
+		$output .='<ul>';
+		$output .= get_rsvp_facepile($post_id);
+		$output .='</ul>';
 
-		$return = array('status' => $status, 'people' => $facepile);
+		$return = array('status' => $status, 'facepile' => $output);
 		echo json_encode($return);
 		
 		exit;

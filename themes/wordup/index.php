@@ -24,17 +24,24 @@ get_header(); ?>
 
 			while ($wordups->have_posts()) : $wordups->the_post(); ?>
 
-			<h1 class="wordup-title"><?php the_title(); ?></h1>
-			<h2 class="wordup-date"><?php $date = DateTime::createFromFormat('Ymd', get_post_meta($post->ID, 'date', true)); echo $date->format('d-m-Y'); ?></h2>
+			<header class="entry-header">
+			<h1 class="entry-title"><?php the_title(); ?></h1>
+			<h2 class="wordup-date"><?php $date = DateTime::createFromFormat('Ymd', get_post_meta($post->ID, 'date', true)); echo $date->format('M d, Y'); ?></h2>
+			</header>
+
+			<div class="entry-content">
+				<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'wordup' ) ); ?>
+				<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wordup' ), 'after' => '</div>' ) ); ?>
+			</div><!-- .entry-content -->
 
 			<?php if ($post->connected) { ?>
-			<ul>
+			
 			<?php foreach ( $post->connected as $post ) : setup_postdata( $post ); ?>
 
-			<li><a href="<?php the_permalink() ?>"><?php the_title() ?></a></li>
+			<?php get_template_part( 'content', 'session' ) ?>
 		
 			<?php endforeach; wp_reset_postdata(); ?>
-			</ul>
+			
 			<?php } ?>
 
 			     <?php 
