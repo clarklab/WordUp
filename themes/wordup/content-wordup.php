@@ -33,7 +33,7 @@ jQuery('#wordup-banner nav').waypoint('sticky');
 
 	<nav>
 		<ul>
-			<li><a href="#sessions">Sessions</a></li>
+			<li><a class="selected" href="#sessions">Sessions</a></li>
 			<li><a href="#speakers">Speakers</a></li>
 			<li><a href="#details">Details</a></li>
 		</ul>
