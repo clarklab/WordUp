@@ -556,16 +556,35 @@ object {
 	display: block;
 }
 
-#page{ margin:70px 300px 140px 0; }
+#page{ margin:0 300px 140px 0; }
 
-#main{max-width: 840px; margin:0 auto;}
+#main article, #comments, #tab-container, .author .site-content{max-width: 840px; margin:0 auto;}
 
-#masthead{position: fixed; top:0; bottom:0; right:0; width:300px; text-align: center; border-left:1px solid #cecece; padding: 70px 0 0 0;}
+#masthead{position: fixed; top:0; bottom:0; right:0; width:300px; text-align: center; border-left:1px solid #cecece; padding: 70px 30px; background: #fff; z-index: 10;}
 #masthead h1{font-weight: 800; font-size: 24px; }
 #masthead h2{margin: 0 0 10px 0; }
+#masthead h2 .time{margin: 0 0 0 10px; }
+
+#masthead .facepile ul{text-align: left}
+#masthead .facepile ul li img, #masthead .facepile ul li{width:24px; height: 24px;}
+#masthead .facepile ul li a{width: 24px; height: 24px; background:#cecece; display: inline-block;}
+
+#wordup-banner{width:100%; overflow: hidden; position: relative; padding: 70px 0 0 0;}
+#wordup-banner .entry-content{max-width: 840px; margin:0 auto;}
+.wordup-desc {font-family: "adelle"; font-size: 30px; font-weight: 400; color: #444;}
+#wordup-banner nav{border-bottom: 1px solid #cecece; width:100%;}
+#wordup-banner ul{max-width: 840px; margin:0 auto; list-style: none;}
+#wordup-banner ul li{display: inline;}
+#wordup-banner ul li a{padding: 8px 14px; display: inline-block; border:1px solid #cecece; border-bottom: 0; background:#fff;}
+#wordup-banner .stuck {position: fixed; top:0; left: 0; background:#fff; z-index: 9; padding: 10px 300px 0 0;}
+#wordup-banner .wp-post-image{position: absolute; z-index: -1; opacity: 0.1; top:0;}
+#main #tab-container article:first-child{padding:0;}
+
+#main .hentry, .author .site-content{padding: 70px 0 0 0;}
 
 .entry-title{font-weight: 800; font-size: 34px; line-height: 34px}
 
+.site-navigation{margin-bottom: 10px;}
 .site-navigation a{background: #1e8cbe; color:#fff; display: inline-block; padding: 0 10px; height: 40px; line-height: 40px;}
 
 .facepile ul{list-style: none; margin:0; padding: 0;}
@@ -576,9 +595,9 @@ p.rsvps{margin-bottom: 10px;}
 
 form.rsvp{float:right;}
 
-article .author{padding: 10px 10px 10px 114px; min-height:96px; background: #eee; position: relative;}
-article .author img{position: absolute; top:0; left: 0;}
-article .author p{margin: 0;}
+.speaker{padding: 10px 10px 10px 114px; min-height:96px; background: #eee; position: relative; margin:0 0 20px 0;}
+.speaker img{position: absolute; top:0; left: 0;}
+.speaker p{margin: 0;}
 
 .presented{list-style:none; margin: 30px 0 0 0; padding: 0;}
 .presented li{display: inline;}
@@ -593,10 +612,10 @@ article .author p{margin: 0;}
 .leading, .joining {list-style:none; margin: 0; padding: 0; border: 1px solid #cecece; padding: 20px}
 .leading li:first-child, .joining li:first-child{font-weight: 800; font-size: 16px; }
 
-.half{width: 48%; float: left; margin: 0 4% 0 0;}
-.half:last-child{margin: 0;}
+.half{width: 48%; float: left; margin: 0 0 0 4%;}
+.half:nth-child(2n+3){margin: 0;}
 
-.wordup-desc {font-family: "adelle"; font-size: 30px; font-weight: 800; color: #999;}
+
 
 @media all and (max-width: 680px) {
 body{padding: 50px 0 0 0;}

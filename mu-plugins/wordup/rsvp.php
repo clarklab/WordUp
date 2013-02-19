@@ -21,10 +21,10 @@ class wordup_session_rsvp {
 		<script>
 		jQuery(document).ready(function(){
 			
-			jQuery('input.rsvp').click(function(){
-				var this_button = jQuery(this);
-				var session_id = jQuery(this).closest('form').children('.session_id').val();
-				var rsvp_user_id = jQuery(this).closest('form').children('.rsvp_user_id').val();
+			jQuery('.rsvp').click(function(){
+				var obj = jQuery(this);
+				var session_id = obj.children('input[name=session_id]').val();
+				var rsvp_user_id = obj.children('input[name=rsvp_user_id]').val();
 			
 				jQuery.post(
 					'<?php echo get_option('siteurl') . '/wp-admin/admin-ajax.php' ?>',
@@ -36,8 +36,8 @@ class wordup_session_rsvp {
 					},
 					function(response) {	
 						var data = jQuery.parseJSON(response);
-						jQuery(this_button).val(data.status + ' the session');
-						jQuery(this_button).closest('header').children('.facepile').html(data.facepile);
+						jQuery(obj.children('input[name=rsvp]')).val(data.status + ' the session');
+						jQuery(obj).next('.facepile').html(data.facepile);
 					
 					}
 				);
@@ -60,7 +60,7 @@ class wordup_session_rsvp {
 		$output = '<form action="" method="post" class="rsvp">
 		<input type="hidden" name="session_id" class="session_id" id="session_id" value="' . get_the_ID() .'">
 		<input type="hidden" name="rsvp_user_id" class="rsvp_user_id" id="rsvp_user_id" value="' . $current_user->ID . '">
-		<input type="button" name="rsvp" id="rsvp" class="rsvp" value="'.$status.' this session" />
+		<input type="button" name="rsvp" id="rsvp" value="'.$status.' this session" />
 		</form>'; }
 
 		$output .='<div class="facepile">';

@@ -135,6 +135,9 @@ function wordup_scripts() {
 
 	// wp_enqueue_script( 'small-menu', get_template_directory_uri() . '/js/small-menu.js', array( 'jquery' ), '20120206', true );
 
+	wp_enqueue_script( 'waypoints', get_template_directory_uri() . '/js/waypoints.min.js', array( 'jquery' ), '20130220', true );
+	wp_enqueue_script( 'waypoints-sticky', get_template_directory_uri() . '/js/waypoints-sticky.min.js', array( 'waypoints' ), '20130220', true );
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}

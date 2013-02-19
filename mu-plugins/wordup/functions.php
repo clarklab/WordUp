@@ -47,8 +47,12 @@ function get_rsvp_total($postid) {
 }
 
 function get_rsvp_facepile($postid) {
-  global $post;
-  $rsvps= get_users( array( 'connected_type' => 'session_rsvps', 'connected_items' => $postid) );
+  $type = get_post_type( $postid );
+  if ($type == 'session') {
+    $rsvps= get_users( array( 'connected_type' => 'session_rsvps', 'connected_items' => $postid) );
+  } elseif ($type == 'wordup'){
+    $rsvps= get_users( array( 'connected_type' => 'wordup_rsvps', 'connected_items' => $postid) );
+  }
   foreach ($rsvps as $user) {
     $output .='<li><a href="/person/'.$user->user_login.'">'.get_avatar( $user->user_email, '96' ).'</a></li>';}
   return $output;

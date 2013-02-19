@@ -26,11 +26,23 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="hfeed site">
+
 	<?php do_action( 'before' ); ?>
 	<header id="masthead" class="site-header" role="banner">
+
+	<?php
+	global $wordups;
+	$wordups = new WP_Query('posts_per_page=1&post_type=wordup&meta_key=date&orderby=meta_value_num&order=ASC'); 
+	 while ($wordups->have_posts()) : $wordups->the_post(); ?>
+
 		<hgroup>
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
+			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php the_title(); ?></a></h1>
+			<?php $tagline = get_post_meta($post->ID, 'tagline', true); if ($tagline) { ?>
+			<h2 class="wordup-details">
+			<span class="date"><?php $date = DateTime::createFromFormat('Ymd', get_post_meta($post->ID, 'date', true)); echo $date->format('M j, Y'); ?></span> 
+			<span class="time"><?php echo get_post_meta($post->ID, 'time', true); ?></span>
+			</h2>
+			<?php } ?>
 		</hgroup>
 
 		<nav role="navigation" class="site-navigation main-navigation">
@@ -39,6 +51,20 @@
 
 			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
 		</nav><!-- .site-navigation .main-navigation -->
+
+		
+		<h2 class="wordup-seats">
+			<?php $seats = get_post_meta($post->ID, 'space', true); $taken = get_rsvp_total($post->ID); echo ($seats-$taken).' / '; echo $seats; ?> Seats Available
+		</h2>
+
+		<div class="facepile">
+		<ul>
+		<?php echo get_rsvp_facepile($post->ID); ?><?php echo str_repeat('<li class="placeholder"><a href=""><img src="http://www.leeabraham.co.uk/Portals/0/Forums/SystemAvatar/genericAvatar.gif"/></a></li>', ($seats-$taken)); ?>
+		</ul>
+		</div>
+		
+	<?php endwhile; ?>
+
 	</header><!-- #masthead .site-header -->
 
 	<div id="main" class="site-main">

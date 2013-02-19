@@ -23,7 +23,7 @@
 	<div class="entry-content">
 		<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'wordup' ) ); ?>
 		<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wordup' ), 'after' => '</div>' ) ); ?>
-		<?php get_template_part( 'credit') ?>
+		<?php if (is_singular('session')) { get_template_part( 'credit'); } ?>
 	</div><!-- .entry-content -->
 	
 	<?php if (!is_singular( 'wordup' )) {

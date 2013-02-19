@@ -17,12 +17,7 @@ get_header(); ?>
 		<div id="primary" class="content-area">
 			<div id="content" class="site-content" role="main">
 
-			<?php
-
-			$wordups = new WP_Query('posts_per_page=1&post_type=wordup&meta_key=date&orderby=meta_value_num&order=ASC');
-			p2p_type( 'sessions_to_wordups' )->each_connected( $wordups );
-
-			while ($wordups->have_posts()) : $wordups->the_post(); ?>
+			<?php while ($wordups->have_posts()) : $wordups->the_post(); ?>
 
 			<?php get_template_part( 'content', 'wordup' ) ?>
 
