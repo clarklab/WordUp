@@ -623,7 +623,8 @@ body{padding: 50px 0 0 0;}
 #page{margin:0; padding: 10px;}
 #masthead{top:0; bottom: auto; left:0; width:100%; border:0; border-bottom:1px solid #cecece; height: 40px; text-align: left; background: #fff; z-index: 100; padding:0;}
 #masthead h1{float:left; height: 40px; line-height: 40px; margin: 0 10px;}
-#masthead h2{float:left; clear: none; height: 40px; line-height: 40px;}
+#masthead h2, #masthead .facepile{display: none;}
+#wordup-banner .stuck{padding: 50px 0 0 0;}
 .main-navigation{float: right; width:auto; clear: none}
 .half{width: 100%; float: none;}
 }
