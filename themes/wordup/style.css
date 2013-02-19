@@ -568,6 +568,7 @@ object {
 #masthead .facepile ul{text-align: left}
 #masthead .facepile ul li img, #masthead .facepile ul li{width:24px; height: 24px;}
 #masthead .facepile ul li a{width: 24px; height: 24px; background:#cecece; display: inline-block;}
+#masthead .facepile .placeholder{opacity: 0.4;}
 
 #wordup-banner{width:100%; overflow: hidden; position: relative; padding: 70px 0 0 0;}
 #wordup-banner .entry-content{max-width: 840px; margin:0 auto;}

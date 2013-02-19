@@ -59,7 +59,7 @@
 
 		<div class="facepile">
 		<ul>
-		<?php echo get_rsvp_facepile($post->ID); ?><?php echo str_repeat('<li class="placeholder"><a href=""><img src="http://www.leeabraham.co.uk/Portals/0/Forums/SystemAvatar/genericAvatar.gif"/></a></li>', ($seats-$taken)); ?>
+		<?php echo get_rsvp_facepile($post->ID); ?><?php echo str_repeat('<li class="placeholder"><a href=""><img src="'.get_bloginfo( 'template_directory' ).'/images/avatar-generic.png"/></a></li>', ($seats-$taken)); ?>
 		</ul>
 		</div>
 		
