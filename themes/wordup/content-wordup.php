@@ -22,20 +22,18 @@ jQuery('#wordup-banner nav').waypoint('sticky');
 });
 </script>
 
-<div id="wordup-banner" <?php post_class(); ?>>
+<div id="wordup-banner" <?php post_class(); ?> style="background-color:<?php echo get_post_meta( $post->ID, 'banner_color', true )?>">
 	
-<?php $wordupid= $post->ID; echo get_the_post_thumbnail( $post->ID, 'original') ?>
+<?php echo get_the_post_thumbnail( $post->ID, 'original') ?>
 	
 	<div class="entry-content wordup-desc">
-		<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'wordup' ) ); ?>
+		<?php the_excerpt(); ?>
 		<?php wp_link_pages( array( 'before' => '<div class="page-links">' . __( 'Pages:', 'wordup' ), 'after' => '</div>' ) ); ?>
 	</div><!-- .entry-content -->
 
 	<nav>
 		<ul>
-			<li><a class="selected" href="#sessions">Sessions</a></li>
-			<li><a href="#speakers">Speakers</a></li>
-			<li><a href="#details">Details</a></li>
+			<li><a class="selected" href="#sessions">Sessions</a></li><li><a href="#speakers">Speakers</a></li><li><a href="#details">Details</a></li>
 		</ul>
 	</nav>
 
@@ -66,12 +64,14 @@ jQuery('#wordup-banner nav').waypoint('sticky');
 
 	<div id="speakers">
 	<?php while ( $connected->have_posts() ) : $connected->the_post(); ?>
-		<?php get_template_part( 'credit') ?>
+		<?php get_template_part( 'credit', 'large') ?>
 	<?php endwhile; ?>
 	</div>
 
+	<?php wp_reset_query(); ?>
+
 	<div id="details">
-		Details coming soon!
+		<?php the_content() ?>
 	</div>
 
 </div>

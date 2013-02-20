@@ -298,7 +298,7 @@ textarea {
 
 /* Links */
 a {
-	color: #1e8cbe; text-decoration: none;
+	color: #f89c0a; text-decoration: none;
 }
 
 /* Alignment */
@@ -558,33 +558,33 @@ object {
 
 #page{ margin:0 300px 140px 0; }
 
-#main article, #comments, #tab-container, .author .site-content{max-width: 840px; margin:0 auto;}
+#main article, #comments, #tab-container, .author .site-content{max-width: 960px; margin:0 auto;}
 
-#masthead{position: fixed; top:0; bottom:0; right:0; width:300px; text-align: center; border-left:1px solid #cecece; padding: 70px 30px; background: #fff; z-index: 10;}
+#masthead{position: fixed; top:0; bottom:0; right:0; width:300px; text-align: center; border-left:1px solid #f4f4f4; padding: 70px 30px; background: #fff; z-index: 10;}
 #masthead h1{font-weight: 800; font-size: 24px; }
 #masthead h2{margin: 0 0 10px 0; }
 #masthead h2 .time{margin: 0 0 0 10px; }
 
 #masthead .facepile ul{text-align: left}
 #masthead .facepile ul li img, #masthead .facepile ul li{width:24px; height: 24px;}
-#masthead .facepile ul li a{width: 24px; height: 24px; background:#cecece; display: inline-block;}
+#masthead .facepile ul li a{width: 24px; height: 24px; background:#f4f4f4; display: inline-block;}
 #masthead .facepile .placeholder{opacity: 0.4;}
 
-#wordup-banner{width:100%; overflow: hidden; position: relative; padding: 70px 0 0 0;}
-#wordup-banner .entry-content{max-width: 840px; margin:0 auto;}
-.wordup-desc {font-family: "adelle"; font-size: 30px; font-weight: 400; color: #444;}
-#wordup-banner nav{border-bottom: 1px solid #cecece; width:100%;}
-#wordup-banner ul{max-width: 840px; margin:0 auto; list-style: none;}
+#wordup-banner{width:100%; overflow: hidden; position: relative; padding: 70px 0 0 0; font-family: "adelle"; font-weight: 300;}
+#wordup-banner .entry-content{max-width: 960px; margin:0 auto;}
+.wordup-desc {font-size: 30px; color: #444;}
+#wordup-banner nav{width:100%;}
+#wordup-banner ul{max-width: 960px; margin:0 auto; list-style: none; position: relative; top:1px;}
 #wordup-banner ul li{display: inline;}
-#wordup-banner ul li a{padding: 8px 14px; display: inline-block; border:1px solid #cecece; background:#fff; position: relative; top:1px;}
-#wordup-banner ul li a.selected{border-bottom: 1px solid #fff;}
+#wordup-banner ul li a{padding: 12px 25px; display: inline-block; background:#fff; border-top:3px solid #8f8f8f; font-size: 26px; color: #000; margin: 0 1px 1px 0;}
+#wordup-banner ul li a.selected{border-top:3px solid #f89c0a; padding-bottom: 13px; position: relative; top:0;}
 #wordup-banner .stuck {position: fixed; top:0; left: 0; background:#fff; z-index: 9; padding: 10px 300px 0 0;}
 #wordup-banner .wp-post-image{position: absolute; z-index: -1; opacity: 0.1; top:0;}
-#main #tab-container article:first-child{padding:0;}
+#main #tab-container article:first-child{padding:30px 0 0 0;}
 
 #main .hentry, .author .site-content{padding: 70px 0 0 0;}
 
-.entry-title{font-weight: 800; font-size: 34px; line-height: 34px}
+.entry-title{font-family: "adelle"; font-weight: 300; font-size: 34px; line-height: 34px}
 
 .site-navigation{margin-bottom: 10px;}
 .site-navigation a{background: #1e8cbe; color:#fff; display: inline-block; padding: 0 10px; height: 40px; line-height: 40px;}
@@ -597,13 +597,19 @@ p.rsvps{margin-bottom: 10px;}
 
 form.rsvp{float:right;}
 
-.speaker{padding: 10px 10px 10px 114px; min-height:96px; background: #eee; position: relative; margin:0 0 20px 0;}
-.speaker img{position: absolute; top:0; left: 0;}
-.speaker p{margin: 0;}
+.speaker-small{padding: 10px 10px 10px 114px; min-height:96px; background: #eee; position: relative; margin:0 0 20px 0;}
+.speaker-small img{position: absolute; top:0; left: 0;}
+.speaker-small p{margin: 0;}
+
+.speaker-large{width: 30%;  position: relative; float: left; line-height: 0; margin: 0 5% 5% 0;}
+.speaker-large:nth-child(3n+3){margin: 0;}
+.speaker-large .desc{background: #eee; padding:10px; line-height: 1.4em; height: 120px; overflow: hidden;}
+.speaker-large img{max-width: 100%; height: auto;}
+.speaker-large p{margin: 0;}
 
 .presented{list-style:none; margin: 30px 0 0 0; padding: 0;}
 .presented li{display: inline;}
-.presented a{display: inline-block; padding: 4px 8px; border: 2px solid #cecece; border-radius: 100px;}
+.presented a{display: inline-block; padding: 4px 8px; border: 2px solid #f4f4f4; border-radius: 100px;}
 
 .commentlist{list-style:none; padding: 0; margin: 15px 0 0 0;}
 .commentlist li{position: relative; padding: 0 0 0 50px;}
@@ -611,7 +617,7 @@ form.rsvp{float:right;}
 
 #respond{margin:30px 0 0 0;}
 
-.leading, .joining {list-style:none; margin: 0; padding: 0; border: 1px solid #cecece; padding: 20px}
+.leading, .joining {list-style:none; margin: 0; padding: 0; border: 1px solid #f4f4f4; padding: 20px}
 .leading li:first-child, .joining li:first-child{font-weight: 800; font-size: 16px; }
 
 .half{width: 48%; float: left; margin: 0 0 0 4%;}
@@ -621,10 +627,14 @@ form.rsvp{float:right;}
 
 @media all and (max-width: 680px) {
 body{padding: 50px 0 0 0;}
-#page{margin:0; padding: 10px;}
-#masthead{top:0; bottom: auto; left:0; width:100%; border:0; border-bottom:1px solid #cecece; height: 40px; text-align: left; background: #fff; z-index: 100; padding:0;}
-#masthead h1{float:left; height: 40px; line-height: 40px; margin: 0 10px;}
+#page{margin:0;}
+#masthead{top:0; bottom: auto; left:0; width:100%; border:0; border-bottom:1px solid #f4f4f4; height: 50px; text-align: left; background: #fff; z-index: 100; padding:0;}
+#masthead h1{float:left; height: 50px; line-height: 50px; margin: 0 10px;}
 #masthead h2, #masthead .facepile{display: none;}
+.site-navigation a{height: 50px; line-height: 50px;}
+
+#wordup-banner ul li a{padding: 6px 12px !important; font-size: 18px;}
+
 #wordup-banner .stuck{padding: 50px 0 0 0;}
 .main-navigation{float: right; width:auto; clear: none}
 .half{width: 100%; float: none;}

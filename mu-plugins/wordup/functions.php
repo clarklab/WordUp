@@ -21,7 +21,8 @@ function my_connection_types() {
 	p2p_register_connection_type( array(
 		'name' => 'sessions_to_wordups',
 		'from' => 'session',
-		'to' => 'wordup'
+		'to' => 'wordup',
+             'admin_dropdown' => 'from'
 	) );
       p2p_register_connection_type( array(
             'name' => 'session_rsvps',
@@ -56,5 +57,18 @@ function get_rsvp_facepile($postid) {
   foreach ($rsvps as $user) {
     $output .='<li><a href="/person/'.$user->user_login.'">'.get_avatar( $user->user_email, '96' ).'</a></li>';}
   return $output;
+}
+
+add_action( 'pre_get_posts', 'get_closest_wordup' );
+function get_closest_wordup( $query ) {
+  
+  if( $query->is_main_query() && $query->is_home() ) {
+    $query->set( 'posts_per_page', '1' );
+    $query->set( 'post_type', 'wordup' );
+    $query->set( 'meta_key', 'date' );
+    $query->set( 'orderby', 'meta_value_num' );
+    $query->set( 'order', 'ASC' );
+  }
+ 
 }
 ?>
