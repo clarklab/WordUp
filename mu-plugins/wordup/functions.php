@@ -47,12 +47,16 @@ function get_rsvp_total($postid) {
   return count($rsvps);
 }
 
+function cmp_p2p($a, $b){  if ($a->p2p_id == $b->p2p_id) { return 0; } return ($a->p2p_id > $b->p2p_id) ? -1 : 1; }  
+
 function get_rsvp_facepile($postid) {
   $type = get_post_type( $postid );
   if ($type == 'session') {
     $rsvps= get_users( array( 'connected_type' => 'session_rsvps', 'connected_items' => $postid) );
+    usort($rsvps, 'cmp_p2p'); 
   } elseif ($type == 'wordup'){
     $rsvps= get_users( array( 'connected_type' => 'wordup_rsvps', 'connected_items' => $postid) );
+    usort($rsvps, 'cmp_p2p'); 
   }
   foreach ($rsvps as $user) {
     $output .='<li><a href="/person/'.$user->user_login.'">'.get_avatar( $user->user_email, '96' ).'</a></li>';}

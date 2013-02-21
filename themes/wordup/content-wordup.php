@@ -5,23 +5,6 @@
  */
 ?>
 
-<script>
-jQuery(document).ready(function() {
-jQuery(function () {
-    var tabContainers = jQuery('div#tab-container > div');
-
-    jQuery('#wordup-banner nav a').click(function () {
-        tabContainers.hide().filter(this.hash).show();
-        jQuery('#wordup-banner nav a').removeClass('selected');
-        jQuery(this).addClass('selected');
-        
-        return false;
-    }).filter(':first').click();
-});
-jQuery('#wordup-banner nav').waypoint('sticky');
-});
-</script>
-
 <div id="wordup-banner" <?php post_class(); ?> style="background-color:<?php echo get_post_meta( $post->ID, 'banner_color', true )?>">
 	
 <?php echo get_the_post_thumbnail( $post->ID, 'original') ?>
@@ -33,7 +16,7 @@ jQuery('#wordup-banner nav').waypoint('sticky');
 
 	<nav>
 		<ul>
-			<li><a class="selected" href="#sessions">Sessions</a></li><li><a href="#speakers">Speakers</a></li><li><a href="#details">Details</a></li>
+			
 		</ul>
 	</nav>
 
@@ -53,7 +36,7 @@ jQuery('#wordup-banner nav').waypoint('sticky');
 	if ( $connected->have_posts() ) :
 	?>
 
-	<div id="sessions">
+	<div id="sessions" class="section" rel="Sessions">
 	<?php while ( $connected->have_posts() ) : $connected->the_post(); ?>
 		<?php get_template_part( 'content', 'session' ) ?>
 	<?php endwhile; ?>
@@ -62,7 +45,7 @@ jQuery('#wordup-banner nav').waypoint('sticky');
 
 	</div>
 
-	<div id="speakers">
+	<div id="speakers" class="section" rel="Speakers">
 	<?php while ( $connected->have_posts() ) : $connected->the_post(); ?>
 		<?php get_template_part( 'credit', 'large') ?>
 	<?php endwhile; ?>
@@ -70,7 +53,7 @@ jQuery('#wordup-banner nav').waypoint('sticky');
 
 	<?php wp_reset_query(); ?>
 
-	<div id="details">
+	<div id="details" class="section" rel="Details">
 		<?php the_content() ?>
 	</div>
 

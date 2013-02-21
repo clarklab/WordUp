@@ -38,8 +38,8 @@ class wordup_session_rsvp {
 					},
 					function(response) {	
 						var data = jQuery.parseJSON(response);
-						jQuery(obj.children('input[name=rsvp]')).val(data.status + ' the session');
-						jQuery(obj).next('.facepile').html(data.facepile);
+						jQuery(obj.children('input[name=rsvp]')).val(data.symbol);
+						jQuery(obj).closest('.facepile').children('ul').html(data.facepile);
 					
 					}
 				);
@@ -65,21 +65,22 @@ class wordup_session_rsvp {
 		$p2p_id = p2p_type( 'session_rsvps' )->get_p2p_id( get_the_ID(), $current_user->ID );
 		if ( $p2p_id ) {$status = 'leave'; } else { $status = 'join'; };
 
+		$output .='<div class="facepile">';
+		$output .='<ul>';
+		$output .='<li class="rsvps"><span class="count">'.get_rsvp_total(get_the_ID()).'</span> Attending</li>';
+		$output .= get_rsvp_facepile(get_the_ID());
+		$output .='</ul>';
 		if( is_user_logged_in() ) {
-		$output = '<form action="" method="post" class="rsvp">
+		$output .= '<form action="" method="post" class="rsvp">
 		<input type="hidden" name="session_id" class="session_id" id="session_id" value="' . get_the_ID() .'">
 		<input type="hidden" name="rsvp_user_id" class="rsvp_user_id" id="rsvp_user_id" value="' . $current_user->ID . '">';
 		foreach ($wordup_check as $wordup) {
 			$output .='<input type="hidden" name="wordup_id" class="wordup_id" value="' . $wordup->ID .'">';
 		}
-		$output .='<input type="button" name="rsvp" id="rsvp" value="'.$status.' this session" />
-		</form>'; }
-
-		$output .='<div class="facepile">';
-		$output .='<p class="rsvps"><span class="count">'.get_rsvp_total(get_the_ID()).'</span> Attending</p>';
-		$output .='<ul>';
-		$output .= get_rsvp_facepile(get_the_ID());
-		$output .='</ul>';
+		if ($status=='leave'){ $output .='<input type="button" name="rsvp" alt="Change RSVP status" value="-" />';
+		} else { $output .='<input type="button" name="rsvp" value="+" />'; }
+		
+		$output .='</form>'; }
 		$output .='</div>';
 
 		return $output;
@@ -102,11 +103,11 @@ class wordup_session_rsvp {
 
 		if ( $session_p2p ) {
 			p2p_type( 'session_rsvps' )->disconnect( $post_id, $user_id );
-			$status = 'left'; 
+			$symbol = '+'; 
 		} else {
 			p2p_type( 'session_rsvps' )->connect( $post_id, $user_id, array('date' => current_time('mysql')) );
 			if ( !$wordup_p2p ) { p2p_type( 'wordup_rsvps' )->connect( $wordup_id, $user_id, array('date' => current_time('mysql')) ); }
-			$status = 'joined';
+			$symbol = '-';
 		}
 
 		$related_sessions = get_posts( array(
@@ -118,12 +119,12 @@ class wordup_session_rsvp {
 		
 		if (empty($related_sessions)){ p2p_type( 'wordup_rsvps' )->disconnect( $wordup_id, $user_id ); };
 
-		$output .='<p class="rsvps"><span class="count">'.get_rsvp_total($post_id).'</span> Attending</p>';
 		$output .='<ul>';
+		$output .='<li class="rsvps"><span class="count">'.get_rsvp_total($post_id).'</span> Attending</li>';
 		$output .= get_rsvp_facepile($post_id);
 		$output .='</ul>';
 
-		$return = array('status' => $status, 'facepile' => $output);
+		$return = array('symbol' => $symbol, 'facepile' => $output);
 		echo json_encode($return);
 		
 		exit;

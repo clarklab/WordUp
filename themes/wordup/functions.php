@@ -133,8 +133,9 @@ add_action( 'widgets_init', 'wordup_widgets_init' );
 function wordup_scripts() {
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
 
-	// wp_enqueue_script( 'small-menu', get_template_directory_uri() . '/js/small-menu.js', array( 'jquery' ), '20120206', true );
+	wp_enqueue_script( 'small-menu', get_template_directory_uri() . '/js/small-menu.js', array( 'jquery' ), '20120206', true );
 
+	wp_enqueue_script( 'scrollto', get_template_directory_uri() . '/js/jquery.scrollTo-1.4.3.1-min.js', array( 'jquery' ), '20130220', true );
 	wp_enqueue_script( 'waypoints', get_template_directory_uri() . '/js/waypoints.min.js', array( 'jquery' ), '20130220', true );
 	wp_enqueue_script( 'waypoints-sticky', get_template_directory_uri() . '/js/waypoints-sticky.min.js', array( 'waypoints' ), '20130220', true );
 

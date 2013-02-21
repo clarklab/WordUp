@@ -575,12 +575,10 @@ object {
 .wordup-desc {font-size: 30px; color: #444;}
 #wordup-banner nav{width:100%;}
 #wordup-banner ul{max-width: 960px; margin:0 auto; list-style: none; position: relative; top:1px;}
-#wordup-banner ul li{display: inline;}
-#wordup-banner ul li a{padding: 12px 25px; display: inline-block; background:#fff; border-top:3px solid #8f8f8f; font-size: 26px; color: #000; margin: 0 1px 1px 0;}
-#wordup-banner ul li a.selected{border-top:3px solid #f89c0a; padding-bottom: 13px; position: relative; top:0;}
-#wordup-banner .stuck {position: fixed; top:0; left: 0; background:#fff; z-index: 9; padding: 10px 300px 0 0;}
+#wordup-banner ul a{padding: 12px 25px; display: inline-block; background:#fff; border-top:3px solid #8f8f8f; font-size: 26px; color: #000; margin: 0 1px 1px 0;}
+#wordup-banner ul a.active{border-top:3px solid #f89c0a; padding-bottom: 13px; position: relative; top:0;}
+#wordup-banner .stuck {position: fixed; top:0; left: 0; background:#fff; z-index: 9; padding: 20px 300px 0 0; background:#f4f4f4;}
 #wordup-banner .wp-post-image{position: absolute; z-index: -1; opacity: 0.1; top:0;}
-#main #tab-container article:first-child{padding:30px 0 0 0;}
 
 #main .hentry, .author .site-content{padding: 70px 0 0 0;}
 
@@ -589,13 +587,15 @@ object {
 .site-navigation{margin-bottom: 10px;}
 .site-navigation a{background: #1e8cbe; color:#fff; display: inline-block; padding: 0 10px; height: 40px; line-height: 40px;}
 
-.facepile ul{list-style: none; margin:0; padding: 0;}
-.facepile ul li{display: inline-block; margin:0 5px 0 0;}
+.facepile{overflow: auto}
+.facepile ul{list-style: none; margin:0; padding: 0; float: left;}
+.facepile ul li{float:left; margin:0 5px 5px 0;}
 .facepile ul li img{width:48px; height: 48px;}
+.entry-header .facepile ul li:nth-child(2){clear:left;}
+.facepile ul li.rsvps{height: 35px; line-height: 35px;}
 
-p.rsvps{margin-bottom: 10px;}
-
-form.rsvp{float:right;}
+form.rsvp{float:left; margin-top: 40px;}
+form.rsvp input[type=button]{height: 48px; line-height: 48px; width:48px; overflow: hidden; font-size: 48px; padding: 0;}
 
 .speaker-small{padding: 10px 10px 10px 114px; min-height:96px; background: #eee; position: relative; margin:0 0 20px 0;}
 .speaker-small img{position: absolute; top:0; left: 0;}
@@ -615,15 +615,18 @@ form.rsvp{float:right;}
 .commentlist li{position: relative; padding: 0 0 0 50px;}
 .commentlist li .avatar{position: absolute; top:3px; left: 0;}
 
+.section{margin:0 0 700px 0; overflow: auto; padding:30px 0 0 0;}
+#main .section article{padding-top: 0;}
+
 #respond{margin:30px 0 0 0;}
 
 .leading, .joining {list-style:none; margin: 0; padding: 0; border: 1px solid #f4f4f4; padding: 20px}
 .leading li:first-child, .joining li:first-child{font-weight: 800; font-size: 16px; }
 
-.half{width: 48%; float: left; margin: 0 0 0 4%;}
-.half:nth-child(2n+3){margin: 0;}
+.section{clear: both}
 
-
+.half{width: 48%; float: left; margin: 0 4% 0 0;}
+.half:nth-child(2n+2){margin: 0;}
 
 @media all and (max-width: 680px) {
 body{padding: 50px 0 0 0;}
@@ -635,11 +638,12 @@ body{padding: 50px 0 0 0;}
 
 #tab-container div{padding:15px;}
 
-#wordup-banner ul li a{padding: 6px 12px !important; font-size: 18px;}
+#main #wordup-banner{padding: 30px 0 0 0}
+#wordup-banner ul a{padding: 6px 12px !important; font-size: 18px;}
 
-#wordup-banner .stuck{padding: 50px 0 0 0;}
+#wordup-banner .stuck{padding:70px 0 0 0; border-bottom: 1px solid #f4f4f4;}
 .main-navigation{float: right; width:auto; clear: none}
-.half{width: 100%; float: none;}
+.half{width: 100%; float: none; margin:0;}
 
 .speaker-large{width: 100%; float: none;}
 }
