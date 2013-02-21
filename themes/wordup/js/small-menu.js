@@ -72,30 +72,25 @@ function init_navigation(){
 		return false
 	});
 
-
-	$('.section').waypoint(function(direction) {
-
-		if (direction === 'up') {
-
-		var activePageIndex = $(this).index();
-							
-		$('#wordup-banner ul a.active').removeClass('active');
-		$('#wordup-banner ul a:eq('+activePageIndex+')').addClass('active');
-    		}
-
-} , { offset: 110 });
-
-	$('.section').waypoint(function(direction) {
-
-		if (direction === 'down') {
-
-		var activePageIndex = $(this).index();
-							
-		$('#wordup-banner ul .active').removeClass('active');
-		$('#wordup-banner ul a:eq('+activePageIndex+')').addClass('active');
-    		}
-
-} , { offset: 120 });
+$(function() {
+    $('.section')
+      .waypoint(function(direction) {
+        var $links = $('a[href="#' + this.id + '"]');
+        $links.toggleClass('active', direction === 'down');
+      }, {
+        context: window,
+        offset: '100%'
+      })
+      .waypoint(function(direction) {
+        var $links = $('a[href="#' + this.id + '"]');
+        $links.toggleClass('active', direction === 'up');
+      }, {
+        context: window,
+        offset: function() {
+          return -$(this).height();
+        }
+      });
+  });
 
 
 
