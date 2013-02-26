@@ -1,4 +1,4 @@
-<div class="speaker">
+<div class="speaker speaker-small">
 
 <?php echo get_avatar( get_the_author_meta('user_email'), 96 ); ?>
 
